@@ -11,6 +11,7 @@ environment:
   ANTSBUILD: C:\projects\deps\antsbin
 
 install:
+  - nuget install zlib-msvc14-x64-master -Version 1.2.8.4 -Source https://ci.appveyor.com/nuget/zlib-shallow-x0n34b3pfq1b
   - IF NOT EXIST C:\projects\deps mkdir C:\projects\deps
   - cd C:\projects\deps
   - set ANTS_URL="https://github.com/ANTsX/ANTs.git"
