@@ -23,9 +23,9 @@ install:
   - IF NOT EXIST %ANTSBUILD% (
      mkdir %ANTSBUILD% &&
      cd %ANTSBUILD% &&
-     cmake -DCMAKE_BUILD_TYPE=Release -DZLIB_INCLUDE_DIR=%ZLIB_DIR% -DZLIB_LIBRARY=%ZLIB_DIR%\zlib.lib ..\ANTs &&
+     cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DZLIB_INCLUDE_DIR=%ZLIB_DIR% -DZLIB_LIBRARY=%ZLIB_DIR%\zlib.lib ..\ANTs &&
      dir C:\projects\deps\antsbin &&
-     msbuild ALL_BUILD.vcxproj
+     mingw32-make
      )
 
 cache:
