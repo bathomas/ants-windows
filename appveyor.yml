@@ -23,9 +23,8 @@ install:
   - set PATH=%PATH:C:\Program Files\Git\usr\bin;=%
   - set PATH=%PATH%;C:\MinGW\bin
   - set ITK_URL="https://github.com/InsightSoftwareConsortium/ITK"
-    - IF NOT EXIST %ITKSRC% (
-      git clone %ITK_URL% %ITKSRC% 
-      )
+  - IF NOT EXIST %ITKSRC% ( git clone %ITK_URL% %ITKSRC% )
+  - dir C:\projects\deps
   - IF NOT EXIST %ITKBUILD% ( mkdir %ITKBUILD% &&
       cd %ITKBUILD% &&
       cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DBUILD_EXAMPLES=OFF -DBUILD_TESTING=OFF  -DModule_ITKReview=ON %ITKSRC% &&
