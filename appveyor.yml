@@ -1,0 +1,29 @@
+# version format
+version: "{build}"
+
+image: Visual Studio 2015
+platform: x64
+configuration: release
+
+clone_folder: C:\projects\ants-windows
+
+environment:
+  ANTSBUILD: C:\projects\deps\antsbin
+
+install:
+  - IF NOT EXIST C:\projects\deps mkdir C:\projects\deps
+  - cd C:\projects\deps
+  - set ANTS_URL="https://github.com/ANTsX/ANTs.git"
+  - git clone -b v2.2.0 %ANTS_URL%
+  - IF NOT EXIST %ANTSBUILD% (
+     mkdir %ANTSBUILD% &&
+     cd %ANTSBUILD% &&
+     cmake -DCMAKE_BUILD_TYPE=Release ..\ANTs &&
+     msbuild BUILD.vcxproj)
+
+cache:
+  - C:\projects\deps\ANTs
+  - C:\projects\deps\antsbin
+
+build_script:
+  - cd C:\projects\ants-windows
