@@ -17,7 +17,7 @@ install:
   - IF NOT EXIST C:\projects\deps mkdir C:\projects\deps
   - cd C:\projects\deps
   - set ANTS_URL="https://github.com/ANTsX/ANTs.git"
-  - IF NOT EXIST %ANTSBUILD% (
+  - IF NOT EXIST %ANTSSRC% (
     git clone -b v2.2.0 %ANTS_URL%
     )
   - IF NOT EXIST %ANTSBUILD% (
