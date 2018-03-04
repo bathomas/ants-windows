@@ -8,6 +8,8 @@ configuration: release
 clone_folder: C:\projects\ants-windows
 
 environment:
+  matrix:
+  - GENERATOR: MinGW Makefiles
   ANTSSRC: C:\projects\deps\ANTs
   ANTSBUILD: C:\projects\deps\antsbin
 
@@ -17,6 +19,7 @@ install:
   - set ZLIB_DIR="C:\projects\ants-windows\zlib-msvc14-x64-master.1.2.8.4"
   - IF NOT EXIST C:\projects\deps mkdir C:\projects\deps
   - cd C:\projects\deps
+  - set PATH=%PATH:C:\Program Files (x86)\Git\bin;=%
   - set PATH=%PATH%;C:\MinGW\bin
   - set ANTS_URL="https://github.com/ANTsX/ANTs.git"
   - IF NOT EXIST %ANTSSRC% (
