@@ -21,7 +21,7 @@ install:
      mkdir %ANTSBUILD% &&
      cd %ANTSBUILD% &&
      cmake -DCMAKE_BUILD_TYPE=Release -DZLIB_INCLUDE_DIR=%ZLIB_DIR% -DZLIB_LIBRARY=%ZLIB_DIR%\zlib.lib ..\ANTs &&
-     msbuild BUILD.vcxproj)
+     msbuild INSTALL.vcxproj)
 
 cache:
   - C:\projects\deps\ANTs
