@@ -23,7 +23,7 @@ install:
   - IF NOT EXIST %ANTSBUILD% (
      mkdir %ANTSBUILD% &&
      cd %ANTSBUILD% &&
-     cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DZLIB_INCLUDE_DIR=%ZLIB_DIR% -DZLIB_LIBRARY=%ZLIB_DIR%\zlib.lib ..\ANTs &&
+     cmake -G "MinGW Makefiles" -DCMAKE_SH="CMAKE_SH-NOTFOUND" -DCMAKE_BUILD_TYPE=Release -DZLIB_INCLUDE_DIR=%ZLIB_DIR% -DZLIB_LIBRARY=%ZLIB_DIR%\zlib.lib ..\ANTs &&
      dir C:\projects\deps\antsbin &&
      mingw32-make
      )
