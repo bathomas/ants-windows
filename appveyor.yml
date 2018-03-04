@@ -25,17 +25,14 @@ install:
   - set ITK_URL="https://github.com/InsightSoftwareConsortium/ITK"
     - IF NOT EXIST %ITKSRC% (
       git clone %ITK_URL%
-
       )
   - IF NOT EXIST %ITKBUILD% ( mkdir %ITKBUILD% &&
       cd %ITKBUILD% &&
       cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DBUILD_EXAMPLES=OFF -DBUILD_TESTING=OFF  -DModule_ITKReview=ON %ITKSRC% &&
       mingw32-make
-)
+      )
   - set ANTS_URL="https://github.com/ANTsX/ANTs.git"
-  - IF NOT EXIST %ANTSSRC% (
-    git clone -b v2.2.0 %ANTS_URL%
-    )
+  - IF NOT EXIST %ANTSSRC% ( git clone -b v2.2.0 %ANTS_URL% )
   #- IF NOT EXIST %ANTSBUILD% (
 #     mkdir %ANTSBUILD% &&
 #     cd %ANTSBUILD% &&
