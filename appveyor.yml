@@ -12,7 +12,7 @@ environment:
 
 install:
   - nuget install zlib-msvc14-x64-master -Version 1.2.8.4 -Source https://ci.appveyor.com/nuget/zlib-shallow-x0n34b3pfq1b
-  - dir C:\projects\ants-windows\zlib-msvc14-x64-master.1.2.8.4
+  - set ZLIB_DIR="C:\projects\ants-windows\zlib-msvc14-x64-master.1.2.8.4"
   - IF NOT EXIST C:\projects\deps mkdir C:\projects\deps
   - cd C:\projects\deps
   - set ANTS_URL="https://github.com/ANTsX/ANTs.git"
@@ -20,7 +20,7 @@ install:
   - IF NOT EXIST %ANTSBUILD% (
      mkdir %ANTSBUILD% &&
      cd %ANTSBUILD% &&
-     cmake -DCMAKE_BUILD_TYPE=Release ..\ANTs &&
+     cmake -DCMAKE_BUILD_TYPE=Release -DZLIB_INCLUDE_DIR=%ZLIB_DIR% -DZLIB_LIBRARY=%ZLIB_DIR%\zlib.lib ..\ANTs &&
      msbuild BUILD.vcxproj)
 
 cache:
