@@ -8,6 +8,7 @@ configuration: release
 clone_folder: C:\projects\ants-windows
 
 environment:
+  ANTSSRC: C:\projects\deps\ANTs
   ANTSBUILD: C:\projects\deps\antsbin
 
 install:
@@ -16,7 +17,9 @@ install:
   - IF NOT EXIST C:\projects\deps mkdir C:\projects\deps
   - cd C:\projects\deps
   - set ANTS_URL="https://github.com/ANTsX/ANTs.git"
-  - git clone -b v2.2.0 %ANTS_URL%
+  - IF NOT EXIST %ANTSBUILD% (
+    git clone -b v2.2.0 %ANTS_URL%
+    )
   - IF NOT EXIST %ANTSBUILD% (
      mkdir %ANTSBUILD% &&
      cd %ANTSBUILD% &&
