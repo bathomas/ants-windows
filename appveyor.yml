@@ -11,8 +11,9 @@ environment:
   matrix:
   - GENERATOR: MinGW Makefiles
   ANTSSRC: C:\projects\deps\ANTs
+  ITKSRC: C:\projects\deps\ITK
   ANTSBUILD: C:\projects\deps\antsbin
-
+  ITKBUILD: C:\projects\deps\ITK-BUILD
 install:
   - echo %PATH%
   - nuget install zlib-msvc14-x64-master -Version 1.2.8.4 -Source https://ci.appveyor.com/nuget/zlib-shallow-x0n34b3pfq1b
@@ -21,21 +22,33 @@ install:
   - cd C:\projects\deps
   - set PATH=%PATH:C:\Program Files\Git\usr\bin;=%
   - set PATH=%PATH%;C:\MinGW\bin
+  - set ITK_URL="https://github.com/InsightSoftwareConsortium/ITK"
+    - IF NOT EXIST %ITKSRC% (
+      git clone %ITK_URL%
+
+      )
+  - IF NOT EXIST %ITKBUILD% ( mkdir %ITKBUILD% &&
+      cd %ITKBUILD% &&
+      cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DBUILD_EXAMPLES=OFF -DBUILD_TESTING=OFF  -DModule_ITKReview=ON %ITKSRC% &&
+      mingw32-make
+)
   - set ANTS_URL="https://github.com/ANTsX/ANTs.git"
   - IF NOT EXIST %ANTSSRC% (
     git clone -b v2.2.0 %ANTS_URL%
     )
-  - IF NOT EXIST %ANTSBUILD% (
-     mkdir %ANTSBUILD% &&
-     cd %ANTSBUILD% &&
-     cmake -G "MinGW Makefiles" -DCMAKE_SH="CMAKE_SH-NOTFOUND" -DCMAKE_BUILD_TYPE=Release -DZLIB_INCLUDE_DIR=%ZLIB_DIR% -DZLIB_LIBRARY=%ZLIB_DIR%\zlib.lib ..\ANTs &&
-     dir C:\projects\deps\antsbin &&
-     mingw32-make
-     )
+  #- IF NOT EXIST %ANTSBUILD% (
+#     mkdir %ANTSBUILD% &&
+#     cd %ANTSBUILD% &&
+#     cmake -G "MinGW Makefiles" -DCMAKE_SH="CMAKE_SH-NOTFOUND" -DCMAKE_BUILD_TYPE=Release -DZLIB_INCLUDE_DIR=%ZLIB_DIR% -DZLIB_LIBRARY=%ZLIB_DIR%\zlib.lib ..\ANTs &&
+#     dir C:\projects\deps\antsbin &&
+#     mingw32-make
+#     )
 
 cache:
   - C:\projects\deps\ANTs
-  - C:\projects\deps\antsbin -> appveyor.yml
+  - C:\projects\deps\ITK
+  - C:\projects\deps\ITK-BUILD
+  #- C:\projects\deps\antsbin -> appveyor.yml
 
 build_script:
   - cd C:\projects\ants-windows
