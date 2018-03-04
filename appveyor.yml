@@ -21,12 +21,11 @@ install:
      mkdir %ANTSBUILD% &&
      cd %ANTSBUILD% &&
      cmake -DCMAKE_BUILD_TYPE=Release -DZLIB_INCLUDE_DIR=%ZLIB_DIR% -DZLIB_LIBRARY=%ZLIB_DIR%\zlib.lib ..\ANTs &&
-     dir C:/projects/deps/antsbin && 
-     msbuild INSTALL.vcxproj)
+     dir C:\projects\deps\antsbin)
 
 cache:
   - C:\projects\deps\ANTs
-  - C:\projects\deps\antsbin
+  - C:\projects\deps\antsbin -> appveyor.yml
 
 build_script:
   - cd C:\projects\ants-windows
