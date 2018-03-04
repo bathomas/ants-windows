@@ -19,7 +19,7 @@ install:
   - set ZLIB_DIR="C:\projects\ants-windows\zlib-msvc14-x64-master.1.2.8.4"
   - IF NOT EXIST C:\projects\deps mkdir C:\projects\deps
   - cd C:\projects\deps
-  - set PATH=%PATH:C:\Program Files\Git\bin;=%
+  - set PATH=%PATH:"C:\Program Files\Git\usr\bin";=%
   - set PATH=%PATH%;C:\MinGW\bin
   - set ANTS_URL="https://github.com/ANTsX/ANTs.git"
   - IF NOT EXIST %ANTSSRC% (
