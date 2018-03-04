@@ -24,7 +24,7 @@ install:
   - set PATH=%PATH%;C:\MinGW\bin
   - set ITK_URL="https://github.com/InsightSoftwareConsortium/ITK"
     - IF NOT EXIST %ITKSRC% (
-      git clone %ITK_URL%
+      git clone %ITK_URL% %ITKSRC% 
       )
   - IF NOT EXIST %ITKBUILD% ( mkdir %ITKBUILD% &&
       cd %ITKBUILD% &&
